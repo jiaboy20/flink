@@ -26,7 +26,6 @@ import com.focustech.fmq.clients.producer.impl.FMQProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -177,8 +176,7 @@ public class FmqReporter implements MetricReporter, Scheduled {
         sendJSONList.addAll(getMetersReport(currentTimeMillis));
         sendJSONList.addAll(getHistogramsReport(currentTimeMillis));
         for (String reportJSON : sendJSONList) {
-            ProducerMessage message =
-                    new ProducerMessage(reportJSON.getBytes(StandardCharsets.UTF_8));
+            ProducerMessage message = new ProducerMessage(reportJSON);
             SendResult fmqSendResult = fmqProducer.sendSync(topic, message);
             if (fmqSendResult.isFailed()) {
                 log.error(

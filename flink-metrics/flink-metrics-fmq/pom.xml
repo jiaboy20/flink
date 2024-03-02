@@ -37,12 +37,11 @@
       <scope>provided</scope>
     </dependency>
 
-    <dependency>
-      <groupId>com.focustech.fmq</groupId>
-      <artifactId>fmq-clients-all</artifactId>
+	<dependency>
+	  <groupId>com.focustech.fmq</groupId>
+      <artifactId>fmq-producer</artifactId>
       <version>${fmq.version}</version>
-      <type>pom</type>
-    </dependency>
+	</dependency>
 
     <!-- test dependencies -->
 
@@ -76,6 +75,22 @@
 
   <build>
     <plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>copy-focus-dependency</id>
+					<phase>package</phase>
+					<goals>
+						<goal>copy-dependencies</goal>
+					</goals>
+					<configuration>
+						<outputDirectory>${project.build.directory}/dependency</outputDirectory>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -89,7 +104,7 @@
             <configuration>
               <artifactSet>
                 <includes>
-                  <include>com.focustech:*</include>
+                  <include>*</include>
                 </includes>
               </artifactSet>
             </configuration>

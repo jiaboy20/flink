@@ -60,6 +60,13 @@
 		</file>
 
 		<file>
+			<source>../flink-metrics/flink-metrics-fmq/target/flink-metrics-fmq-${project.version}.jar</source>
+			<outputDirectory>plugins/metrics-fmq/</outputDirectory>
+			<destName>flink-metrics-fmq-${project.version}.jar</destName>
+			<fileMode>0644</fileMode>
+		</file>
+
+		<file>
 			<source>../flink-metrics/flink-metrics-statsd/target/flink-metrics-statsd-${project.version}.jar</source>
 			<outputDirectory>plugins/metrics-statsd/</outputDirectory>
 			<destName>flink-metrics-statsd-${project.version}.jar</destName>
